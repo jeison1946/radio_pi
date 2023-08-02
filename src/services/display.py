@@ -24,7 +24,6 @@ def display():
             # Show Serial
             lcd.clear()
             lcd.message("Serial:\n")
-            lcd.message(config.get_serial())
             sleep(3)
 
             # Show IP info
