@@ -1,6 +1,6 @@
 import json
 
-from services.config_service import ConfigService
+from src.services.config_service import ConfigService
 
 class Session:
     config = ConfigService();
