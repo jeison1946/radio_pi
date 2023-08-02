@@ -55,4 +55,6 @@ update-rc.d radio defaults
 
 chown -Rf pi $HOME_PI/*
 
+chmod +x /home/pi/radio_pi/main.py
+
 echo "Finishing setup"
