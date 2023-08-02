@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import json
 from src.sections.player import Player
 from src.services.songs_service import SongService;
