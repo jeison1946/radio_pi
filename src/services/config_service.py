@@ -42,3 +42,6 @@ class ConfigService:
 
   def get_log_file(self):
       return self.config['LOGGER']['LOGFILE'];
+
+  def get_session_file(self):
+      return self.config['PLAYER']['SESSIONFILE'];
