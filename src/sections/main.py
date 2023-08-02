@@ -1,4 +1,5 @@
 import json
+from src.services.display import display
 from src.sections.player import Player
 from src.services.logger import LoggerService;
 from src.services.user_service import UserService;
@@ -22,6 +23,7 @@ class Main:
 
     def initApp(self):
       Main.logger.info("Program started!");
+      display();
       has_internet = NetworkService.check_internet_connection();
       if has_internet:
         user = Main.sessionService.GetProgress('session.json');
