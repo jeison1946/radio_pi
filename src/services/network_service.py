@@ -1,7 +1,23 @@
-
+import netifaces
 import requests
 
 class NetworkService():
+    
+    @staticmethod
+    def get_ipaddress():
+        interfaces = [interface for interface in netifaces.interfaces(
+        ) if interface.startswith("eth")]
+
+        for interface in interfaces:
+            addrs = netifaces.ifaddresses(interface)
+            ip = addrs.get(netifaces.AF_INET)
+
+            if ip and "addr" in ip[0]:
+                return "IP: " + ip[0]["addr"]
+
+        return ""
+
+
     @staticmethod
     def check_internet_connection() -> bool:
         url = "http://www.google.com"
