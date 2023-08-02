@@ -31,6 +31,8 @@ apt-get install -y python3-vlc python3-dev python3-setuptools python3-pip
 echo "Installing dependencies"
 cd $HOME_PI/radio_pi
 pip3 install -r requirements.txt
+mkdir data
+mkdir logs
 
 rc=$?
 if [[ $rc != 0 ]] ; then
