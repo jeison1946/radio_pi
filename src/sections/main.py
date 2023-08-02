@@ -45,13 +45,8 @@ class Main:
         if responseSong.status_code == 200:
           pdvResponse = json.loads(responseSong.text);
           Main.logger.info("Punto de venta cargado");
-          player = Player(pdvResponse['payload']['song']);
-          player.createMedia();
+          player = Player(pdvResponse['payload']['song'], LoggerService);
           status = player.play();
-          if status:
-             Main.logger.info("Esta sonando");
-          else:
-            Main.logger.critical("Fallo al escuchar la canción")
         else:
           Main.logger.debug(responseSong.text);
           Main.logger.info("Punto de venta fallido");
