@@ -24,7 +24,7 @@ class Main:
     def initApp(self):
       Main.logger.info("Program started!");
       """ display(); """
-      has_internet = False;
+      has_internet = NetworkService.check_internet_connection();
       if has_internet:
         response = Main.userService.loginUser();
         if response.status_code == 200:
