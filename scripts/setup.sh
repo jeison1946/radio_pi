@@ -43,6 +43,9 @@ fi
 echo "Copying files for automatic initialization of software..."
 cp $HOME_PI/radio_pi/scripts/radio /etc/init.d/
 
+echo "Copying files for check sound..."
+cp $HOME_PI/radio_pi/scripts/checkSound.sh /usr/bin/
+
 # Verify command
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -52,6 +55,8 @@ fi
 # Permisions of the file
 chmod +x /etc/init.d/radio
 update-rc.d radio defaults
+chmod +x /usr/bin/checkSound.sh
+(crontab -l 2>/dev/null; echo "@reboot sudo /usr/bin/checkSound.sh") | crontab -
 
 chown -Rf pi $HOME_PI/*
 
