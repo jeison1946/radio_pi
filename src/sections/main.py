@@ -24,21 +24,21 @@ class Main:
     def initApp(self):
       Main.logger.info("Program started!");
       """ display(); """
-      has_internet = NetworkService.check_internet_connection();
+      has_internet = False;
       if has_internet:
-        user = Main.sessionService.GetProgress('session.json');
-
-        if user:
-          Main.logger.info("Login Already");
+        response = Main.userService.loginUser();
+        if response.status_code == 200:
+          loginResponse = json.loads(response.text)
+          Main.sessionService.WriteProgress('session.json', json.dumps(loginResponse['payload']));
+          Main.logger.info("Login Success");
           Player(LoggerService()).play();
         else:
-          response = Main.userService.loginUser();
-          if response.status_code == 200:
-            loginResponse = json.loads(response.text)
-            Main.sessionService.WriteProgress('session.json', json.dumps(loginResponse['payload']));
-            Main.logger.info("Login Success");
-            Player(LoggerService()).play();
-          else:
-            Main.logger.critical("Login Failed");
+          Main.logger.critical("Login Failed");
       else:
-        Main.logger.critical("No internet connection available.")
+        Main.logger.info("No internet connection available.");
+        self.defaultSong();
+
+    def defaultSong(self):
+      songdefault = Player(LoggerService()).playDefault();
+      if songdefault:
+         self.initApp();

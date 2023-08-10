@@ -32,4 +32,19 @@ class Player():
     while True:
       state = self.player.get_state();
       if state == vlc.State.Ended:
-        self.play()
+        self.play();
+
+  def playDefault(self):
+    try:
+      media = vlc.Media('songDefault/default.mp3');
+      self.player.set_media(media);
+      self.player.play();
+      self.logger.info('Escuchando ' + '7 Rings');
+    except Exception:
+      self.logger.critical('Error al reporducir la canción');
+      return False;
+    
+    while True:
+      state = self.player.get_state();
+      if state == vlc.State.Ended:
+        return True;

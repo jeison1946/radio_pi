@@ -15,8 +15,8 @@ class UserService:
   
   def loginUser(self):
     fromObject = {
-      "username": 'jeison',
-      "password": 'jeison',
+      "username": self.user,
+      "password": self.password,
     }
     endpoint = self.base_url+"/user/login";
     Headers = { "Content-Type" : "application/json" }
