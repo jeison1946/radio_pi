@@ -36,10 +36,13 @@ class Player():
 
   def playDefault(self):
     try:
-      media = vlc.Media('songDefault/default.mp3');
-      self.player.set_media(media);
-      self.player.play();
-      self.logger.info('Escuchando ' + '7 Rings');
+      media = vlc.Media('./songDefault/default.mp3');
+      if media:
+        self.player.set_media(media);
+        self.player.play();
+        self.logger.info('Escuchando ' + '7 Rings');
+      else:
+        self.logger.critical('Error al reporducir la canción');
     except Exception:
       self.logger.critical('Error al reporducir la canción');
       return False;
