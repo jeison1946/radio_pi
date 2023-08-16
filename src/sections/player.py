@@ -2,6 +2,7 @@ import json
 import vlc;
 from src.services.songs_service import SongService;
 from src.services.network_service import NetworkService;
+from src.services.config_service import ConfigService;
 
 class Player():
   songService = SongService();
@@ -43,8 +44,9 @@ class Player():
             self.initApp();
 
   def playDefault(self):
+    config = ConfigService();
     try:
-      media = vlc.Media('./songDefault/default.mp3');
+      media = vlc.Media(config.get_backup_path());
       if media:
         self.player.set_media(media);
         self.player.play();

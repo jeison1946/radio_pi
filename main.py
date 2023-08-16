@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from src.sections.main import Main
+from threading import Thread, Event
 
 if __name__ == '__main__':
-    app = Main();
-    app.initApp();
+    Thread(target=Main().initApp, args=()).start()
